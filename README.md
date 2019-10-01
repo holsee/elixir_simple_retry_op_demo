@@ -1,21 +1,20 @@
 # RetryDemo
 
-**TODO: Add description**
+Simple example application to demonstrate how you can perform retry operations
+simply in elixir using a supervised process.
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `retry_demo` to your list of dependencies in `mix.exs`:
+## Examples
 
 ```elixir
-def deps do
-  [
-    {:retry_demo, "~> 0.1.0"}
-  ]
-end
+alias RetryDemo.UploadServer
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/retry_demo](https://hexdocs.pm/retry_demo).
+Simulate successful upload:
+```elixir
+UploadServer.upload("some_file.doc")
+```
 
+Simulate upload failure with retry logic (any file ending with `.fail`):
+```elixir
+UploadServer.upload("some_file.fail")
+```
