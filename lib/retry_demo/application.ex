@@ -5,14 +5,13 @@ defmodule RetryDemo.Application do
 
   use Application
 
+  alias RetryDemo.UploadServer
+
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: RetryDemo.Worker.start_link(arg)
-      # {RetryDemo.Worker, arg}
+      UploadServer.Supervisor.child_spec()
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: RetryDemo.Supervisor]
     Supervisor.start_link(children, opts)
   end
